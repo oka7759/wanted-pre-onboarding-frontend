@@ -1,13 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import LoginCompo from "./components/LoginCompo";
 import SignUpCompo from "./components/SignUpCompo";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [switchComo, setSwetchComp] = useState(true);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    localStorage.getItem("jwt") && navigate("/todo");
+  }, []);
 
   const change = () => {
     setSwetchComp((prev) => !prev);

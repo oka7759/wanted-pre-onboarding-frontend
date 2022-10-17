@@ -28,7 +28,7 @@ const TodoList = () => {
 
   useEffect(() => {
     fatchDate();
-  }, [modal, modalValue]);
+  }, []);
 
   return (
     <TodoListBox>
@@ -79,7 +79,12 @@ const TodoList = () => {
         })}
       </ListGroup>
       {modal && (
-        <ModalCompo setModal={setModal} modal={modal} modalValue={modalValue} />
+        <ModalCompo
+          setModal={setModal}
+          modal={modal}
+          modalValue={modalValue}
+          fatchDate={fatchDate}
+        />
       )}
     </TodoListBox>
   );

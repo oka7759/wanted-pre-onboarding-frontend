@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const LoginCompo = () => {
   const navigate = useNavigate();
+
   const [inputValue, setInputValue] = useState({
     email: "",
     password: "",
@@ -24,12 +25,12 @@ const LoginCompo = () => {
       : password.length < 8
       ? alert("비밀번호는 8자리 이상만 가능합니다.")
       : postLoginAPI(inputValue).then((res) => {
-          console.log(res);
-          res.statusText === "ok" &&
+          res.statusText === "OK" &&
             localStorage.setItem("jwt", res.data.access_token);
           navigate("/todo");
         });
   };
+
   return (
     <>
       <Form
