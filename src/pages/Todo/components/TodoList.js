@@ -22,6 +22,7 @@ const TodoList = () => {
   const goCompleted = (id, todo, isCompleted) => {
     putTodoCompletAPI(id, todo, isCompleted);
   };
+
   const goDelete = (id) => {
     delTodoAPI(id);
   };
