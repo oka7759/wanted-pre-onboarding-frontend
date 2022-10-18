@@ -15,6 +15,7 @@ const AddTodo = ({ modal, modalValue, setModal, setListData }) => {
     !modal
       ? postTodoAPI(value).then((res) => {
           setListData(res.data);
+          setValue("");
         })
       : putTodoAPI(modalValue, value).then((res) => {
           setListData(res.data);

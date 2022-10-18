@@ -32,6 +32,7 @@ const TodoList = ({ listData, setListData }) => {
 
   useEffect(() => {
     fatchDate();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -42,9 +43,16 @@ const TodoList = ({ listData, setListData }) => {
           return (
             <ListGroup.Item as="li" key={id} active={isCompleted}>
               <Row>
-                <Col xs={12} md={8}>
-                  {todo}
-                </Col>
+                {isCompleted ? (
+                  <Col xs={12} md={8}>
+                    <s>{todo}</s>
+                  </Col>
+                ) : (
+                  <Col xs={12} md={8}>
+                    {todo}
+                  </Col>
+                )}
+
                 <Col xs={6} md={3}>
                   <ButtonGroup aria-label="Basic example ">
                     <Button
