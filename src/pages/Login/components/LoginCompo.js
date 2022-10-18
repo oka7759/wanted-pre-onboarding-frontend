@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
@@ -24,11 +24,15 @@ const LoginCompo = () => {
       ? alert("메일형식이 아닙니다.")
       : password.length < 8
       ? alert("비밀번호는 8자리 이상만 가능합니다.")
-      : postLoginAPI(inputValue).then((res) => {
-          res.statusText === "OK" &&
-            localStorage.setItem("jwt", res.data.access_token);
-          navigate("/todo");
-        });
+      : postLoginAPI(inputValue)
+          .then((res) => {
+            res.statusText === "OK" &&
+              localStorage.setItem("jwt", res.data.access_token);
+            navigate("/todo");
+          })
+          .catch((e) => {
+            alert("아이디와 비밀번호를 확인하세요");
+          });
   };
 
   return (
