@@ -30,20 +30,22 @@ export function postLoginAPI(data) {
 
 /*Todo 추가 */
 export function postTodoAPI(data) {
-  return axios.post(
-    url + "todos",
-    { todo: data },
-    {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("jwt"),
-        "Content-Type": "application/json",
-      },
-    }
-  );
+  return axios
+    .post(
+      url + "todos",
+      { todo: data },
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("jwt"),
+          "Content-Type": "application/json",
+        },
+      }
+    )
+    .then(getTodoAPI);
 }
 
 /*Todo 불러오기 */
-export function getTodoAPI(data) {
+export function getTodoAPI() {
   return axios.get(url + "todos", {
     headers: {
       Authorization: "Bearer " + localStorage.getItem("jwt"),
@@ -53,35 +55,41 @@ export function getTodoAPI(data) {
 
 /*Todo 수정 */
 export function putTodoAPI(id, data) {
-  return axios.put(
-    url + `todos/${id}`,
-    { todo: data, isCompleted: false },
-    {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("jwt"),
-        "Content-Type": "application/json",
-      },
-    }
-  );
+  return axios
+    .put(
+      url + `todos/${id}`,
+      { todo: data, isCompleted: false },
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("jwt"),
+          "Content-Type": "application/json",
+        },
+      }
+    )
+    .then(getTodoAPI);
 }
 /*Todo 완료 */
 export function putTodoCompletAPI(id, todos, boolean) {
-  return axios.put(
-    url + `todos/${id}`,
-    { todo: todos, isCompleted: boolean },
-    {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("jwt"),
-        "Content-Type": "application/json",
-      },
-    }
-  );
+  return axios
+    .put(
+      url + `todos/${id}`,
+      { todo: todos, isCompleted: boolean },
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("jwt"),
+          "Content-Type": "application/json",
+        },
+      }
+    )
+    .then(getTodoAPI);
 }
 /*Todo 삭제 */
 export function delTodoAPI(id) {
-  return axios.delete(url + `todos/${id}`, {
-    headers: {
-      Authorization: "Bearer " + localStorage.getItem("jwt"),
-    },
-  });
+  return axios
+    .delete(url + `todos/${id}`, {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("jwt"),
+      },
+    })
+    .then(getTodoAPI);
 }

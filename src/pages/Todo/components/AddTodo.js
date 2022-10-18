@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 import Stack from "react-bootstrap/Stack";
 import { postTodoAPI, putTodoAPI } from "../../../api/api";
 
-const AddTodo = ({ modal, modalValue, setModal }) => {
+const AddTodo = ({ modal, modalValue, setModal, setListData }) => {
   const [value, setValue] = useState("");
 
   const handInput = (e) => {
@@ -14,9 +14,11 @@ const AddTodo = ({ modal, modalValue, setModal }) => {
   const fatchData = () => {
     !modal
       ? postTodoAPI(value).then((res) => {
-          res.statusText !== "Created" && alert("실패");
+          setListData(res.data);
         })
-      : putTodoAPI(modalValue, value);
+      : putTodoAPI(modalValue, value).then((res) => {
+          setListData(res.data);
+        });
   };
   return (
     <Stack direction="horizontal" gap={3} className="p-4">

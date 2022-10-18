@@ -8,8 +8,7 @@ import ModalCompo from "./ModalCompo";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-const TodoList = () => {
-  const [listData, setListData] = useState([]);
+const TodoList = ({ listData, setListData }) => {
   const [modal, setModal] = useState(false);
   const [modalValue, setModalValue] = useState(null);
 
@@ -20,11 +19,15 @@ const TodoList = () => {
   };
 
   const goCompleted = (id, todo, isCompleted) => {
-    putTodoCompletAPI(id, todo, isCompleted);
+    putTodoCompletAPI(id, todo, isCompleted).then((res) => {
+      setListData(res.data);
+    });
   };
 
   const goDelete = (id) => {
-    delTodoAPI(id);
+    delTodoAPI(id).then((res) => {
+      setListData(res.data);
+    });
   };
 
   useEffect(() => {
@@ -84,7 +87,7 @@ const TodoList = () => {
           setModal={setModal}
           modal={modal}
           modalValue={modalValue}
-          fatchDate={fatchDate}
+          setListData={setListData}
         />
       )}
     </TodoListBox>

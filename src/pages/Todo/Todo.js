@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 const Todo = () => {
   const navigate = useNavigate();
+  const [listData, setListData] = useState([]);
   const goLogout = () => {
     localStorage.removeItem("jwt");
     navigate("/");
@@ -26,8 +27,8 @@ const Todo = () => {
             로그아웃
           </Button>
         </Header>
-        <TodoList />
-        <AddTodo />
+        <TodoList listData={listData} setListData={setListData} />
+        <AddTodo listData={listData} setListData={setListData} />
       </TodoBox>
     </Container>
   );

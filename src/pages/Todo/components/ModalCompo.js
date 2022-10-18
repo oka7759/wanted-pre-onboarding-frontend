@@ -3,7 +3,7 @@ import Modal from "react-bootstrap/Modal";
 import styled from "styled-components";
 import AddTodo from "./AddTodo";
 
-const ModalCompo = ({ setModal, modal, modalValue }) => {
+const ModalCompo = ({ setModal, modal, modalValue, setListData }) => {
   return (
     <ModalContainer>
       <Modal.Dialog>
@@ -16,7 +16,12 @@ const ModalCompo = ({ setModal, modal, modalValue }) => {
           <Modal.Title>수정</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <AddTodo modal={modal} modalValue={modalValue} setModal={setModal} />
+          <AddTodo
+            modal={modal}
+            modalValue={modalValue}
+            setModal={setModal}
+            setListData={setListData}
+          />
         </Modal.Body>
       </Modal.Dialog>
     </ModalContainer>
